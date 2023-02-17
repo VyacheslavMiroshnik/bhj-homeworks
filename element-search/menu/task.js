@@ -2,10 +2,10 @@ let menuLink = Array.from(document.getElementsByClassName("menu__link"));
 menuLink.forEach((element) => {
   element.onclick = () => {
     let menuActive = Array.from(document.getElementsByClassName("menu_active"));
-    let isActive = element
+    let isActive = (element.closest(".menu__item").querySelector(".menu_sub")) ? element
       .closest(".menu__item")
       .querySelector(".menu_sub")
-      .className.includes("menu_active");
+      .className.includes("menu_active") : false;
     if (menuActive.length && isActive) {
       menuActive.forEach((element) => {
         element.classList.remove("menu_active");
