@@ -1,33 +1,34 @@
-let mainCheck = Array.from(document.querySelectorAll('.interests_main>ul>.interest>label'));
-let childCheck =[];
-mainCheck.forEach(el => {
-    
-   childCheck.push(Array.from(el.closest('li').querySelector('ul').querySelectorAll('li>label')));
-   
-})
+let mainCheck = Array.from(
+  document.querySelectorAll(".interests_main>ul>.interest>label>input")
+);
+let childCheck = [];
+mainCheck.forEach((el) => {
+  childCheck.push(
+    Array.from(
+      el.closest("li").querySelector("ul").querySelectorAll("li>label>input")
+    )
+  );
+});
 
-childCheck.map((element,index)=>{
-    element.forEach(el=>{
-        el.addEventListener('change',()=>{
-            if (el.querySelector('input').checked){
-                mainCheck[index].querySelector('input').checked=true;
-            } else {
-                if (element.filter(element=>element.querySelector('input').checked).length===0){
-                    mainCheck[index].querySelector('input').checked=false;
-                }
-            }
-        })
-    })
-})
-mainCheck.forEach((element,id) => {
-
-    element.addEventListener('change',()=>{
-        if(element.querySelector('input').checked){
-            childCheck[id].forEach(el=> el.querySelector('input').checked=true)
-            
-        } else{
-            childCheck[id].forEach(el=> el.querySelector('input').checked=false)
-
+childCheck.forEach((inputChild, index) => {
+  inputChild.forEach((input) => {
+    input.addEventListener("change", () => {
+      if (input.checked) {
+        mainCheck[index].checked = true;
+      } else {
+        if (inputChild.filter((element) => element.checked).length === 0) {
+          mainCheck[index].checked = false;
         }
-    })
-})
+      }
+    });
+  });
+});
+mainCheck.forEach((parentInputs, id) => {
+  parentInputs.addEventListener("change", () => {
+    if (parentInputs.checked) {
+      childCheck[id].forEach((el) => (el.checked = true));
+    } else {
+      childCheck[id].forEach((el) => (el.checked = false));
+    }
+  });
+});
