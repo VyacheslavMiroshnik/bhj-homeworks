@@ -34,7 +34,7 @@ document.addEventListener("keydown", (e) => {
     } else {
       textUserMessage(input.value, "message_client");
       input.value = "";
-      textUserMessage();
+      setTimeout(textUserMessage,1000);
     }
   }
 });
