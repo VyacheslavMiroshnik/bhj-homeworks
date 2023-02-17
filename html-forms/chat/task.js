@@ -20,6 +20,10 @@ function textUserMessage(text, className) {
 <div class="message__time">${nowdate}</div>
 <div class="message__text">${message}</div>
 </div>`;
+  let messageContainer = document.querySelector(
+    ".chat-widget__messages-container"
+  );
+  messageContainer.scrollTop = messageContainer.scrollHeight;
 }
 
 function random() {
@@ -34,7 +38,7 @@ document.addEventListener("keydown", (e) => {
     } else {
       textUserMessage(input.value, "message_client");
       input.value = "";
-      setTimeout(textUserMessage,1000);
+      setTimeout(textUserMessage, 1000);
     }
   }
 });
