@@ -1,6 +1,10 @@
 let chat = document
   .querySelector(".chat-widget")
-  .classList.add("chat-widget_active");
+chat.addEventListener('click',()=>{
+
+    chat.classList.toggle("chat-widget_active")
+}
+)
 let input = document.getElementById("chat-widget__input");
 let messages = document.getElementById("chat-widget__messages");
 let botMessages = ["Добрый день", "Я вас прощаю", "И вам не хворать"];
