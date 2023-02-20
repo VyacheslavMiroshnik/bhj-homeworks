@@ -1,8 +1,8 @@
 let chat = document
-  .querySelector(".chat-widget")
+  .querySelector(".chat-widget__side-text")
 chat.addEventListener('click',()=>{
 
-    chat.classList.toggle("chat-widget_active")
+    chat.closest('.chat-widget').classList.toggle("chat-widget_active")
 }
 )
 let input = document.getElementById("chat-widget__input");
