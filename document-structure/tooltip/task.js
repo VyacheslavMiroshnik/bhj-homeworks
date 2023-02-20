@@ -3,9 +3,10 @@ let timerId = null;
 link.forEach((el) => {
   el.addEventListener("click", (e) => {
     e.preventDefault();
+    clearTimeout(timerId);
     removeTooltip();
     createTooltip(e, el);
-    setTimeout(removeTooltip, 2000);
+    timerId = setTimeout(removeTooltip, 2000);
   });
 });
 
@@ -22,9 +23,8 @@ function createTooltip(e, el) {
   el.after(div);
 }
 function removeTooltip() {
-  tooltip = document.querySelector(".tooltip_active");
+  tooltip = document.querySelector(".tooltip");
   if (tooltip) {
-    clearTimeout(timerId);
     tooltip.remove();
   }
 }
