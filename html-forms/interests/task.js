@@ -5,7 +5,7 @@ let childCheck = [];
 mainCheck.forEach((el) => {
   childCheck.push(
     Array.from(
-      el.closest("li").querySelector("ul").querySelectorAll("li>label>input")
+      el.closest("li").querySelector("ul").querySelectorAll(".input")
     )
   );
 });
