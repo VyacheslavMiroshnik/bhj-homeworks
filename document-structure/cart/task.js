@@ -85,3 +85,34 @@ function btnActivate(type, product) {
     consturctCard(product);
   }
 }
+/* кнопка add добавляет только последний элемент
+ for(product of products) {
+  let addBtn = product.querySelector(".product__add");
+  let removeBtn = product.querySelector(".product__remove");
+  let plus = product.querySelector(".product__quantity-control_inc");
+  let minus = product.querySelector(".product__quantity-control_dec");
+  let count = product.querySelector(".product__quantity-value");
+
+  plus.addEventListener("click", (e) => {
+    count.textContent++;
+  });
+
+  minus.addEventListener("click", (e) => {
+    if (+count.textContent === 1) {
+      count.textContent = 1;
+    } else {
+      count.textContent--;
+    }
+  });
+
+  addBtn.addEventListener("click", (e) => {
+    btnActivate("add", product);
+    cartActive();
+    count.textContent = 1;
+  });
+
+  removeBtn.addEventListener("click", (e) => {
+    btnActivate("remove", product);
+    cartActive();
+  });
+}; */
