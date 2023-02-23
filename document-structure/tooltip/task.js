@@ -3,10 +3,13 @@ let timerId = null;
 link.forEach((el) => {
   el.addEventListener("click", (e) => {
     e.preventDefault();
-    clearTimeout(timerId);
-    removeTooltip();
-    createTooltip(e, el);
-    timerId = setTimeout(removeTooltip, 2000);
+    let isTooltip = el.nextElementSibling;
+    if (isTooltip && isTooltip.classList.contains("tooltip")) {
+      removeTooltip();
+    } else {
+      removeTooltip();
+      createTooltip(e, el);
+    }
   });
 });
 

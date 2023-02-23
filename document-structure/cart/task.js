@@ -1,7 +1,6 @@
 const products = Array.from(document.getElementsByClassName("product"));
 const cartProduct = document.querySelector(".cart__products");
 const cartProductItems = document.getElementsByClassName("cart__product");
-let cardIdList = [];
 cartActive();
 
 products.forEach((product) => {
@@ -39,7 +38,6 @@ function consturctCard(card) {
   let imgSrc = card.querySelector("img").getAttribute("src");
   let count = card.querySelector(".product__quantity-value").textContent;
   let id = card.dataset.id;
-  cardIdList.push(id);
   cartProduct.insertAdjacentHTML(
     "beforeend",
     `<div class="cart__product" data-id="${id}">
@@ -47,6 +45,7 @@ function consturctCard(card) {
 <div class="cart__product-count">${count}</div>
 </div>`
   );
+  card.querySelector(".product__remove").style = "display:block;";
 }
 
 function cartActive() {
@@ -59,30 +58,39 @@ function cartActive() {
 }
 
 function btnActivate(type, product) {
-  let listCartProduct = Array.from(cartProductItems);
-  if (cardIdList.includes(product.dataset.id)) {
-    listCartProduct.forEach((item) => {
-      if (item.dataset.id === product.dataset.id) {
-        switch (type) {
-          case "add":
-            let sum =
-              Number(item.querySelector(".cart__product-count").textContent) +
-              Number(
-                product.querySelector(".product__quantity-value").textContent
-              );
-            item.querySelector(".cart__product-count").textContent = sum;
-            break;
-          case "remove":
-            item.remove();
-            cardIdList = cardIdList.filter((el) => el !== product.dataset.id);
-            break;
-          default:
-            break;
-        }
+  let cartProduct = Array.from(cartProductItems).find(
+    (element) => element.dataset.id === product.dataset.id
+  );
+
+  if (cartProduct) {
+    if (cartProduct.dataset.id === product.dataset.id) {
+      switch (type) {
+        case "add":
+          let sum =
+            Number(
+              cartProduct.querySelector(".cart__product-count").textContent
+            ) +
+            Number(
+              product.querySelector(".product__quantity-value").textContent
+            );
+          cartProduct.querySelector(".cart__product-count").textContent = sum;
+          break;
+        case "remove":
+          product.querySelector(".product__remove").style = "";
+          cartProduct.remove();
+          break;
+        default:
+          break;
       }
-    });
+    }
   } else {
-    consturctCard(product);
+    switch (type) {
+      case "add":
+        consturctCard(product);
+        break;
+      default:
+        break;
+    }
   }
 }
 /* кнопка add добавляет только последний элемент
