@@ -1,13 +1,13 @@
-let mainCheck = Array.from(
-  document.querySelectorAll(".interests_main>ul>.interest>label>input")
-);
+const mainCheck = [];
+let parent = document.querySelector("input");
+mainCheck.push(parent);
+parent = parent.closest("li").nextElementSibling;
+mainCheck.push(parent.querySelector("input"));
+
 let childCheck = [];
 mainCheck.forEach((el) => {
-  childCheck.push(
-    Array.from(
-      el.closest("li").querySelector("ul").querySelectorAll(".input")
-    )
-  );
+  let child = el.closest("label").nextElementSibling;
+  childCheck.push(Array.from(child.querySelectorAll("input")));
 });
 
 childCheck.forEach((inputChild, index) => {
