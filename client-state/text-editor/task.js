@@ -1,6 +1,6 @@
 const textArea = document.getElementById("editor");
 const clearBtn = document.getElementById("clear");
-textArea.value = localStorage.getItem("text") ? localStorage.text : "";
+textArea.value = localStorage.getItem("text");
 
 textArea.addEventListener("input", (e) => {
   localStorage.text = textArea.value;
